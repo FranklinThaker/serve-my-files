@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "A Node.js package to serve files over a local network with optional password protection.",
   "main": "index.js",
+  "keywords": [
+    "files",
+    "serve",
+    "localhost",
+    "sharing",
+    "security"
+  ],
   "scripts": {
     "start": "node index.js"
   },
@@ -12,6 +19,10 @@
   "dependencies": {
     "yargs": "^17.0.1",
     "bcrypt": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranklinThaker/serve-my-files.git"
   },
   "author": "Franklin Thaker",
   "license": "MIT"
