@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -59,20 +61,9 @@ function startServer() {
   const server = http.createServer((req, res) => {
     if (passwordHash && !authenticate(req)) {
       res.writeHead(401, {
-        "Content-Type": "text/html",
+        "WWW-Authenticate": 'Basic realm="Protected Area"',
       });
-      res.end(
-        `
-        <html>
-        <body>
-        <script>
-            let password = prompt("Enter password:"); 
-            fetch(window.location.href, { headers: { "X-Custom-Password": password }}).then(res => res.text()).then(text => document.write(text));
-        </script>
-        </body>
-        </html>
-        `
-      );
+      res.end("Authentication required.");
       return;
     }
 
@@ -131,7 +122,14 @@ function startServer() {
 }
 
 function authenticate(req) {
-  const password = req.headers["x-custom-password"];
-  if (!password) return false;
+  const authHeader = req.headers["authorization"];
+  if (!authHeader) return false;
+
+  const base64Credentials = authHeader.split(" ")[1];
+  const credentials = Buffer.from(base64Credentials, "base64").toString(
+    "ascii"
+  );
+  const [_, password] = credentials.split(":"); // Only extract the password part
+
   return bcrypt.compareSync(password, passwordHash);
 }

@@ -19,6 +19,8 @@ serve-my-files
 2. Serve with configuration: [Both fields are optional]
 serve-my-files --port=3456 --password=12345
 
+NOTE: Just ignore 'username' field in the authentication screen.
+
 ```
 
 
