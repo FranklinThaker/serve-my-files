@@ -1,6 +1,6 @@
 {
   "name": "serve-my-files",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node.js package to serve files over a local network with optional password protection.",
   "main": "index.js",
   "keywords": [
@@ -14,7 +14,7 @@
     "start": "node index.js"
   },
   "bin": {
-    "serve-my-files": "index.js"
+    "serve-my-files": "./index.js"
   },
   "dependencies": {
     "yargs": "^17.0.1",
